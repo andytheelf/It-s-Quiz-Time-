@@ -8,10 +8,32 @@
   <title>Quiz Time!</title>
   <link rel="stylesheet" href="./assets/style.css">
 </head> 
-<main>
-    <div id="QuizID"></div>
-    <button id="Results">Get Results</button>
-</main>
+<body>
+    <div id="container">
+        <div id="start-quiz">Start Quiz!</div>
+        <div id="quiz" style="display: none">
+            <div id="questions"></div>
+            <div id="images"></div>
+            <div id="choices">
+                <div class="choice" id="a" 
+                onclick="checkAnswer('a')"></div>
+                <div class="choice" id="b" 
+                onclick="checkAnswer('b')"></div>
+                <div class="choice" id="c" 
+                onclick="checkAnswer('c')"></div>
+                <div class="choice" id="d" 
+                onclick="checkAnswer('d')"></div>
+            </div>
+            <div id="timer">
+                <div id="countdown"></div>
+                <div id="btnTime"></div>
+                <div id="timeGauge"></div>
+            </div>
+            <div= id="progress"></div>
+        </div>
+        <div  id="score" style="display:none"></div>
+    </div>
+   
 <footer>
 </footer>
 <script src="./assets/script.js"></script>

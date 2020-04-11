@@ -1,10 +1,20 @@
-// Quiz question variables
-var quizContainer = document.getElementById("quiz-id");
-var quizResults = document.getElementById("results");
+// Quiz question variablesvar quizContainer = document.getElementById("quiz-id");
+const startQuiz = document.getElementById("start-quiz");
+const quizContain = document.getElementById("quiz");
+const question = document.getElementById("questions");
+const gImg = document.getElementById("images");
+const answerA = document.getElementById("a");
+const AnswerB = document.getElementById("b");
+const AnswerC = document.getElementById("c");
+const AnswerD = document.getElementById("d");
+const counter = document.getElementById("countdown");
+const timeGauge = document.getElementById("timeGauge");
+const progress = document.getElementById("progress");
+const scoreSave = document.getElementById("score");
 //start quiz functionquiz 
-function startQuiz() {
 
-}
+
+
 //quiz clickthrough functions
 
 var myQuestions = [
@@ -59,11 +69,3 @@ var myQuestions = [
        },
 ];
 
-//Quiz results
-function collectResults() {
-
-}
-
-startQuiz();
-//event listener buttons
-getResultsButton.addEventListener("click", collectResults);
