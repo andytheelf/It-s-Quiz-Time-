@@ -1,23 +1,31 @@
 // Quiz question variablesvar quizContainer = document.getElementById("quiz-id");
-const startQuiz = document.getElementById("start-quiz");
-const quizContain = document.getElementById("quiz");
-const question = document.getElementById("questions");
-const gImg = document.getElementById("images");
-const answerA = document.getElementById("a");
-const AnswerB = document.getElementById("b");
-const AnswerC = document.getElementById("c");
-const AnswerD = document.getElementById("d");
-const counter = document.getElementById("countdown");
-const timeGauge = document.getElementById("timeGauge");
-const progress = document.getElementById("progress");
-const scoreSave = document.getElementById("score");
+var quizStart = document.getElementById("start-quiz");
+var quizContain = document.getElementById("quiz");
+var question = document.getElementById("question");
+var qImg = document.getElementById("images");
+var AnswerA = document.getElementById("a");
+var AnswerB = document.getElementById("b");
+var AnswerC = document.getElementById("c");
+var AnswerD = document.getElementById("d");
+var counter = document.getElementById("countdown");
+var timeGauge = document.getElementById("timeGauge");
+var progress = document.getElementById("progress");
+var scoreSave = document.getElementById("score");
+
 //start quiz functionquiz 
+function startQuiz() {
+    //quizStart.style.display = "none";
+    // renderQuestion();
+    // quizContain.style.display = "block";
+    // renderCounter();
+    // TIMER = setInterval(renderCounter,1000);
+ console.log("hello")
+}
 
-
-
+console.log("hey there")
 //quiz clickthrough functions
 
-var myQuestions = [
+let questions = [
 	{
 		question: "Commonly used data types do not include",
 		answers: {
@@ -69,3 +77,34 @@ var myQuestions = [
        },
 ];
 
+const lastQuestion = questions.length - 1
+let runningQuestion = 0;
+
+function renderQuestion() {
+    let q = questions[runningQuestion];
+
+   // question.innerHTML = "<p>" + q.questions + "</p>";
+   // answerA.innerHTML = q.answerA;
+    //answerB.innerHTML = q.answerB;
+   // answerC.innerHTML = q.answerC;
+    //answerD.innerHTML = q.answerD;
+    console.log("HELLO");
+}
+
+
+//counter
+
+let quizCounter
+const quizTime = 75; 
+
+function renderCounter() {
+  if(counter <= quizTime) {
+      counter.innerHTML = count;
+  }
+  else{
+      count = 0;
+  }
+}
+
+
+quizStart.addEventListener("click", startQuiz);
