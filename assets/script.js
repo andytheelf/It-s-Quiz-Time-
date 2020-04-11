@@ -3,10 +3,10 @@ var quizStart = document.getElementById("start-quiz");
 var quizContain = document.getElementById("quiz");
 var question = document.getElementById("question");
 var qImg = document.getElementById("images");
-var AnswerA = document.getElementById("a");
-var AnswerB = document.getElementById("b");
-var AnswerC = document.getElementById("c");
-var AnswerD = document.getElementById("d");
+var answerA = document.getElementById("a");
+var answerB = document.getElementById("b");
+var answerC = document.getElementById("c");
+var answerD = document.getElementById("d");
 var counter = document.getElementById("countdown");
 var timeGauge = document.getElementById("timeGauge");
 var progress = document.getElementById("progress");
@@ -14,11 +14,11 @@ var scoreSave = document.getElementById("score");
 
 //start quiz functionquiz 
 function startQuiz() {
-    //quizStart.style.display = "none";
-    // renderQuestion();
-    // quizContain.style.display = "block";
-    // renderCounter();
-    // TIMER = setInterval(renderCounter,1000);
+    quizStart.style.display = "none";
+    renderQuestion();
+     quizContain.style.display = "block";
+    renderCounter();
+     TIMER = setInterval(renderCounter,1000);
  console.log("hello")
 }
 
@@ -82,14 +82,18 @@ let runningQuestion = 0;
 
 function renderQuestion() {
     let q = questions[runningQuestion];
+   var paragraph =  document.createElement("P")
+   //question.innerHTML = "<p>" + q.question + "</p>";
+    var appear = q.question
+    paragraph.innerText = appear 
+     answerA.innerHTML = q.answersA;
+     answerB.innerHTML = q.answersB;
+     answerC.innerHTML = q.answersC;
+     answerD.innerHTML = q.answersD;
+    console.log(q);
+   question.appendChild(paragraph);
 
-   // question.innerHTML = "<p>" + q.questions + "</p>";
-   // answerA.innerHTML = q.answerA;
-    //answerB.innerHTML = q.answerB;
-   // answerC.innerHTML = q.answerC;
-    //answerD.innerHTML = q.answerD;
-    console.log("HELLO");
-}
+  }
 
 
 //counter
@@ -108,3 +112,4 @@ function renderCounter() {
 
 
 quizStart.addEventListener("click", startQuiz);
+answerA.addEventListener("click", renderQuestion);

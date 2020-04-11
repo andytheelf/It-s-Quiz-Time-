@@ -9,32 +9,21 @@
   <link rel="stylesheet" href="./assets/style.css">
 </head> 
 <body>
-    <div id="container">
-        <button id="start-quiz">Start Quiz!</button>
-        <div id="quiz" style="display: none">
-            <div id="question"></div>
-            <div id="images"></div>
-            <div id="choices">
-                <div class="choice" id="a" 
-                onclick="checkAnswer('a')"></div>
-                <div class="choice" id="b" 
-                onclick="checkAnswer('b')"></div>
-                <div class="choice" id="c" 
-                onclick="checkAnswer('c')"></div>
-                <div class="choice" id="d" 
-                onclick="checkAnswer('d')"></div>
+    <button id="start-quiz">Start Quiz!</button>
+    <div class="grid">
+        <div id="quiz">
+            <h1>QUIZ TIME!</h1>
+            <p id="question"></p>
+             
+            <div class="buttons">
+                <button id="btn0"><span id="choice0"></span></button>
+                <button id="btn1"><span id="choice1"></span></button>
+                <button id="btn2"><span id="choice2"></span></button>
+                <button id="btn3"><span id="choice3"></span></button>
             </div>
-            <div id="timer">
-                <div id="countdown"></div>
-                <div id="btnTime"></div>
-                <div id="timeGauge"></div>
-            </div>
-            <div= id="progress"></div>
-        </div>
-        <div  id="score" style="display:none"></div>
-    </div>
-   
-<footer>
+
+
+<footer> 
 </footer>
 <script src="./assets/script.js"></script>
 </body>
