@@ -7,7 +7,8 @@ var startQuiz = document.getElementById("start-quiz");
 var seconds = document.getElementById("countdown");
 var quizProgress = document.getElementById("progress");
 var gridElement = document.getElementById("gridStyle");
-
+var correctAnwser = document.getElementById("correct");
+var wrong = document.getElementById("wrong");
 
 var questions = [
    {
@@ -16,7 +17,7 @@ var questions = [
 			choiceB: 'booleans',
       choiceC: 'alerts',
       choiceD: 'numbers',
-		correctAnswer: 'c'
+		correctAnswer: '2'
 	},
 	{
 		question: "The condition of an if/else statement is enclosed in..?",
@@ -24,14 +25,14 @@ var questions = [
 			choiceB: 'curly braces',
       choiceC: 'parantheses',
       choiceD: 'square brackets',
-		correctAnswer: 'c'
+		correctAnswer: '2'
     },
         { question: "Arrays in Javascript can be used to store?",
               choiceA: 'numbers & strings',
             choice:'other arrays',
               choiceC:'booleans',
               choiceD:'All of the Above',
-          correctAnswer:'d'
+          correctAnswer:'3'
         },
     
        { question: "String Values must be enclosed within __ when being assigned to variables?",
@@ -39,7 +40,7 @@ var questions = [
            choiceB:'curly braces',
            choiceC:'commas',
            choiceD: 'quotes',
-          correctAnswer:'d'
+          correctAnswer:'3'
        },
        
        { question: "A very useful tool during development and debugging for printing content in the debugger is?",
@@ -47,22 +48,23 @@ var questions = [
            choiceB:'terminal bash',
            choiceC:'for loops',
            choiceD:'console.log',
-         correctAnswer:'d'
+         correctAnswer:'3'
        },
 ];
 
-questions[0].question
-questions[0].choiceA
-questions[0].choiceB
-questions[0].choiceC
-questions[0].choiceD
-questions[0].correctAnswerw
+//  questions[0].question
+//  questions[0].choiceA
+//  questions[0].choiceB
+//  questions[0].choiceC
+//  questions[0].choiceD
+//  questions[0].correctAnswer
 
 var lastQuestion = questions.length -1;
 var runningQuestion = 0;
 var timer = 0;
 var counterTime = 75;
 var TIMER;
+let score = 0;
 
 
 
@@ -104,11 +106,34 @@ function progressProvide() {
   }
 }
 
+function checkAnswer(btn) {
+  if (btn == questions[runningQuestion].correctAnswer){
+    score++;
+    answerCorrect();
+  }else{
+    answerWrong();
+  }
+  count = 0;
+  if(runningQuestion < lastQuestion) {
+    runningQuestion++;
+    presentQuestion();
+  } else {
+    clearInterval(TIMER);
+    showScore();
+  }
+}
+
+function answerWrong() {
+   document.getElementById("wrong").style.display ="block";
+} 
 
 
-var score = 0;
+function answerCorrect() {
+  document.getElementById("correct").style.display ="block";
+}
 
-      // Loop over every question object
-      for (var i = 0; i < questions.length; i++) {}
+
+
+    
 
       startQuiz.addEventListener("click", quizBegin);
