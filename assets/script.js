@@ -1,115 +1,114 @@
 // Quiz question variablesvar quizContainer = document.getElementById("quiz-id");
-var quizStart = document.getElementById("start-quiz");
-var quizContain = document.getElementById("quiz");
-var question = document.getElementById("question");
-var qImg = document.getElementById("images");
-var answerA = document.getElementById("a");
-var answerB = document.getElementById("b");
-var answerC = document.getElementById("c");
-var answerD = document.getElementById("d");
-var counter = document.getElementById("countdown");
-var timeGauge = document.getElementById("timeGauge");
-var progress = document.getElementById("progress");
-var scoreSave = document.getElementById("score");
+var buttonOne = document.getElementById("btn0");
+var buttonTwo = document.getElementById("btn1");
+var buttonThree = document.getElementById("btn2");
+var buttonFour = document.getElementById("btn3");
+var startQuiz = document.getElementById("start-quiz");
+var seconds = document.getElementById("countdown");
+var quizProgress = document.getElementById("progress");
+var gridElement = document.getElementById("gridStyle");
 
-//start quiz functionquiz 
-function startQuiz() {
-    quizStart.style.display = "none";
-    renderQuestion();
-     quizContain.style.display = "block";
-    renderCounter();
-     TIMER = setInterval(renderCounter,1000);
- console.log("hello")
-}
 
-console.log("hey there")
-//quiz clickthrough functions
-
-let questions = [
-	{
+var questions = [
+   {
 		question: "Commonly used data types do not include",
-		answers: {
-			a: 'strings',
-			b: 'booleans',
-            c: 'alerts',
-            d: 'numbers'
-		},
+			choiceA: 'strings',
+			choiceB: 'booleans',
+      choiceC: 'alerts',
+      choiceD: 'numbers',
 		correctAnswer: 'c'
 	},
 	{
 		question: "The condition of an if/else statement is enclosed in..?",
-		answers: {
-			a: 'quotes',
-			b: 'curly braces',
-            c: 'parantheses',
-            d: 'square brackets',
-        },
+      choiceA: 'quotes',
+			choiceB: 'curly braces',
+      choiceC: 'parantheses',
+      choiceD: 'square brackets',
 		correctAnswer: 'c'
     },
         { question: "Arrays in Javascript can be used to store?",
-          answers: {
-              a: 'numbers & strings',
-              b:'other arrays',
-              c:'booleans',
-              d:'All of the Above',
-          },
+              choiceA: 'numbers & strings',
+            choice:'other arrays',
+              choiceC:'booleans',
+              choiceD:'All of the Above',
           correctAnswer:'d'
         },
     
        { question: "String Values must be enclosed within __ when being assigned to variables?",
-         answers: {
-           a:'parentheses',
-           b:'curly braces',
-           c:'commas',
-           d: 'quotes',
-         },
+           choiceA:'parentheses',
+           choiceB:'curly braces',
+           choiceC:'commas',
+           choiceD: 'quotes',
           correctAnswer:'d'
        },
        
        { question: "A very useful tool during development and debugging for printing content in the debugger is?",
-         answers: {
-           a:'Javascript',
-           b:'terminal bash',
-           c:'for loops',
-           d:'console.log',
-         },
+           choiceA:'Javascript',
+           choiceB:'terminal bash',
+           choiceC:'for loops',
+           choiceD:'console.log',
          correctAnswer:'d'
        },
 ];
 
-const lastQuestion = questions.length - 1
-let runningQuestion = 0;
+questions[0].question
+questions[0].choiceA
+questions[0].choiceB
+questions[0].choiceC
+questions[0].choiceD
+questions[0].correctAnswerw
 
-function renderQuestion() {
-    let q = questions[runningQuestion];
-   var paragraph =  document.createElement("P")
-   //question.innerHTML = "<p>" + q.question + "</p>";
-    var appear = q.question
-    paragraph.innerText = appear 
-     answerA.innerHTML = q.answersA;
-     answerB.innerHTML = q.answersB;
-     answerC.innerHTML = q.answersC;
-     answerD.innerHTML = q.answersD;
-    console.log(q);
-   question.appendChild(paragraph);
+var lastQuestion = questions.length -1;
+var runningQuestion = 0;
+var timer = 0;
+var counterTime = 75;
+var TIMER;
 
+
+
+
+  function startTimer() {
+    
+    if (counterTime > 0) {
+      counterTime--;
+      TIMER = counterTime;
+      countdown.innerHTML = "TIMER: " + TIMER;
+    } else {
+      timer = 0;
+    }
+    
   }
 
 
-//counter
 
-let quizCounter
-const quizTime = 75; 
+function presentQuestion() {
+  let q = questions[runningQuestion];
+  question.innerHTML = "<p>" + q.question+ "</p>";
+  btn0.innerHTML = q.choiceA;
+  btn1.innerHTML = q.choiceB;
+  btn2.innerHTML = q.choiceC;
+  btn3.innerHTML = q.choiceD;
+}
 
-function renderCounter() {
-  if(counter <= quizTime) {
-      counter.innerHTML = count;
-  }
-  else{
-      count = 0;
+function quizBegin() {
+startQuiz.style.display = "none";
+presentQuestion();
+gridElement.style.display = "grid";
+progressProvide();
+TIMER = setInterval(startTimer,1000);
+}
+
+function progressProvide() {
+  for(let qIndex= 0; qIndex <= lastQuestion; qIndex++) {
+   progress.innerHTML += "<div class='prog' id=" + qIndex +"></div>";
   }
 }
 
 
-quizStart.addEventListener("click", startQuiz);
-answerA.addEventListener("click", renderQuestion);
+
+var score = 0;
+
+      // Loop over every question object
+      for (var i = 0; i < questions.length; i++) {}
+
+      startQuiz.addEventListener("click", quizBegin);
