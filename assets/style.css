@@ -46,3 +46,68 @@ body {
 #btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus {
    outline: 0;
 }
+
+#score-container {
+    width: 600px;
+    height: 400px;
+    display: grid;
+    background-color: teal;
+    font-size: 35px;
+    color: black;
+    border-radius: 25px;
+    margin: 15px 35px 15px 0;
+    padding: 10px 10px;
+    text-align: center;
+
+}
+
+#countdown {
+    display: flex;
+    justify-content: right;
+    text-align: right;
+    color: black;
+    font-size: 30px;
+}
+
+#start-quiz {
+    display: flex;
+    border: 3px solid teal;
+    background-color: black;
+    color: teal;
+    width: 200px;
+    height: 200px;
+    font-size: 35px;
+}
+
+#enter-in {
+    display:flex;
+    text-align: right;
+    font-size: 20px;
+}
+
+#initials {
+    display:flex;
+    justify-content: left;
+    background-color: slategray;
+    width: 300px;
+    font-size: 25px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 25px;
+    margin: 15px 35px 15px 0;
+    padding: 10px 10px;
+
+}
+
+#save-score {
+    display: flex;
+    justify-content: center;
+    background-color: slategray;
+    width: 300px;
+    font-size: 25px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 25px;
+    margin: 15px 35px 15px 0;
+    padding: 10px 10px;
+}

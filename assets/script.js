@@ -9,6 +9,11 @@ var quizProgress = document.getElementById("progress");
 var gridElement = document.getElementById("gridStyle");
 var correctAnwser = document.getElementById("correct");
 var wrong = document.getElementById("wrong");
+var scores = document.getElementById("score-container");
+var initialsEntry = document.getElementById("enter-in");
+var saveScoreBtn = document.getElementById("save-score");
+var quizVar = document.getElementById("quiz");
+
 
 var questions = [
    {
@@ -64,7 +69,7 @@ var runningQuestion = 0;
 var timer = 0;
 var counterTime = 75;
 var TIMER;
-let score = 0;
+var score = 0;
 
 
 
@@ -74,7 +79,7 @@ let score = 0;
     if (counterTime > 0) {
       counterTime--;
       TIMER = counterTime;
-      countdown.innerHTML = "TIMER: " + TIMER;
+      countdown.innerHTML = "Timer: " + TIMER;
     } else {
       timer = 0;
     }
@@ -111,6 +116,13 @@ function checkAnswer(btn) {
     score++;
     answerCorrect();
   }else{
+    counterTime--;
+    counterTime--;
+    counterTime--;
+    counterTime--;
+    counterTime--;
+    TIMER = counterTime;
+    countdown.innerHTML = "Timer: " + TIMER;
     answerWrong();
   }
   count = 0;
@@ -125,15 +137,32 @@ function checkAnswer(btn) {
 
 function answerWrong() {
    document.getElementById("wrong").style.display ="block";
+   document.getElementById("correct").style.display ="none";
 } 
 
 
 function answerCorrect() {
   document.getElementById("correct").style.display ="block";
+  document.getElementById("wrong").style.display ="none";
 }
 
+function showScore() {
+  //gridElement.style.display = "none";
+  document.getElementById("quizTitle").style.display = "none";
+  document.getElementById("question").style.display = "none";
+  document.getElementById("btn0").style.display = "none";
+  document.getElementById("btn1").style.display = "none";
+  document.getElementById("btn2").style.display = "none";
+  document.getElementById("btn3").style.display = "none";
+  document.getElementById("score-container").style.display = "grid";
+  var scoreFinal = Math.round(100 * score/questions.length);
+  scores.innerHTML += "<p>" + scoreFinal + "</p>";
+}
 
+function populateStorage() {
+  localStorage.setItem("enter-in", "saveScore");
+}
 
     
-
+      saveScoreBtn.addEventListener("click", populateStorage);
       startQuiz.addEventListener("click", quizBegin);
