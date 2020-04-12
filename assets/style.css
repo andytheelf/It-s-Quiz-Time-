@@ -63,14 +63,20 @@ body {
 
 #countdown {
     display: flex;
-    justify-content: right;
+    justify-content: space-around;
     text-align: right;
     color: black;
     font-size: 30px;
+    border-radius: 25px;
+    margin: 15px 35px 15px 0;
+    padding: 10px 10px;
+    text-align: center;
+
 }
 
 #start-quiz {
     display: flex;
+    justify-content: space-around;
     border: 3px solid teal;
     background-color: black;
     color: teal;
@@ -111,3 +117,26 @@ body {
     margin: 15px 35px 15px 0;
     padding: 10px 10px;
 }
+
+#enter-in:hover {
+    cursor: pointer;
+    background-color: rgb(78, 105, 131);
+}
+
+#save-score:hover {
+    cursor: pointer;
+    background-color: rgb(78, 105, 131);
+}
+
+.button #start-quiz {
+    display: flex;
+    justify-content: center;
+    border-radius: 25px;
+    margin: 15px 35px 15px 0;
+    padding: 10px 10px;
+    text-align: center;
+
+
+}
+
+

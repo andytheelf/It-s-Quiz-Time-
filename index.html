@@ -10,7 +10,8 @@
 </head>
 
 <body>
-    <button id="start-quiz" style="display:block">Start Quiz!</button>
+    <a href="./assets/highscore.html">Highscore</a>
+    <button id="start-quiz" style="display: flex-center">Start Quiz!</button>
     <span id="countdown">Timer: 75</span>
     <div class="grid" id="gridStyle" style="display:none">
         <div id="quiz">
@@ -26,7 +27,7 @@
             <div id="progress"></div>
             <div id="score-container" style="display:none">Your Score!
                 <label for="initials" id="enter-in">Initials Here!</label><input type="text" id="initials" />
-                <button id="save-score">Save Score!</button></div>
+                <button id="save-score" onclick="showScore">Save Score!</button></div>
             <div id="correct" style="display: none">Correct!</div>
             <div id="wrong" style="display: none">Wrong!</div>
 
