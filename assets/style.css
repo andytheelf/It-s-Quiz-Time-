@@ -118,11 +118,6 @@ body {
     padding: 10px 10px;
 }
 
-#enter-in:hover {
-    cursor: pointer;
-    background-color: rgb(78, 105, 131);
-}
-
 #save-score:hover {
     cursor: pointer;
     background-color: rgb(78, 105, 131);
@@ -135,8 +130,35 @@ body {
     margin: 15px 35px 15px 0;
     padding: 10px 10px;
     text-align: center;
-
-
 }
+
+#correct {
+    font-size: 30px;
+    font-family: cursive;
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+#wrong {
+    font-size: 30px;
+    font-family: cursive;
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+#restartQuiz {
+    display: flex;
+    background-color: slategray;
+    text-align: center;
+    width: 200px;
+    font-size: 25px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 25px;
+    margin: 15px 35px 15px 0;
+    padding: 10px 10px;
+}
+
+
 
 

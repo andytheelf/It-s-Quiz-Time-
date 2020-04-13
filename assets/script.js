@@ -13,48 +13,53 @@ var scores = document.getElementById("score-container");
 var initialsEntry = document.getElementById("enter-in");
 var saveScoreBtn = document.getElementById("save-score");
 var quizVar = document.getElementById("quiz");
-var highScores =document.getElementById("highScore")
+var highScores = document.getElementById("highScore")
+var scoreFinal;
+var restartQ = document.getElementById("restartQuiz");
 
 var questions = [
-   {
-		question: "Commonly used data types do not include",
-			choiceA: 'strings',
-			choiceB: 'booleans',
-      choiceC: 'alerts',
-      choiceD: 'numbers',
-		correctAnswer: '2'
-	},
-	{
-		question: "The condition of an if/else statement is enclosed in..?",
-      choiceA: 'quotes',
-			choiceB: 'curly braces',
-      choiceC: 'parantheses',
-      choiceD: 'square brackets',
-		correctAnswer: '2'
-    },
-        { question: "Arrays in Javascript can be used to store?",
-              choiceA: 'numbers & strings',
-            choice:'other arrays',
-              choiceC:'booleans',
-              choiceD:'All of the Above',
-          correctAnswer:'3'
-        },
-    
-       { question: "String Values must be enclosed within __ when being assigned to variables?",
-           choiceA:'parentheses',
-           choiceB:'curly braces',
-           choiceC:'commas',
-           choiceD: 'quotes',
-          correctAnswer:'3'
-       },
-       
-       { question: "A very useful tool during development and debugging for printing content in the debugger is?",
-           choiceA:'Javascript',
-           choiceB:'terminal bash',
-           choiceC:'for loops',
-           choiceD:'console.log',
-         correctAnswer:'3'
-       },
+  {
+    question: "Commonly used data types do not include",
+    choiceA: 'strings',
+    choiceB: 'booleans',
+    choiceC: 'alerts',
+    choiceD: 'numbers',
+    correctAnswer: '2'
+  },
+  {
+    question: "The condition of an if/else statement is enclosed in..?",
+    choiceA: 'quotes',
+    choiceB: 'curly braces',
+    choiceC: 'parantheses',
+    choiceD: 'square brackets',
+    correctAnswer: '2'
+  },
+  {
+    question: "Arrays in Javascript can be used to store?",
+    choiceA: 'numbers & strings',
+    choice: 'other arrays',
+    choiceC: 'booleans',
+    choiceD: 'All of the Above',
+    correctAnswer: '3'
+  },
+
+  {
+    question: "String Values must be enclosed within __ when being assigned to variables?",
+    choiceA: 'parentheses',
+    choiceB: 'curly braces',
+    choiceC: 'commas',
+    choiceD: 'quotes',
+    correctAnswer: '3'
+  },
+
+  {
+    question: "A very useful tool during development and debugging for printing content in the debugger is?",
+    choiceA: 'Javascript',
+    choiceB: 'terminal bash',
+    choiceC: 'for loops',
+    choiceD: 'console.log',
+    correctAnswer: '3'
+  },
 ];
 
 //  questions[0].question
@@ -64,33 +69,38 @@ var questions = [
 //  questions[0].choiceD
 //  questions[0].correctAnswer
 
-var lastQuestion = questions.length -1;
+var lastQuestion = questions.length - 1;
 var runningQuestion = 0;
 var timer = 0;
 var counterTime = 75;
 var TIMER;
 var score = 0;
 
+function myStopFunction() {
+  clearInterval(TIMER);
+}
 
 
+function startTimer() {
 
-  function startTimer() {
-    
-    if (counterTime > 0) {
-      counterTime--;
-      TIMER = counterTime;
-      countdown.innerHTML = "Timer: " + TIMER;
-    } else {
-      timer = 0;
-    }
-    
+  if (counterTime >= 1 && counterTime < 500) {
+    counterTime--;
+    TIMER = counterTime;
+    countdown.innerHTML = "Timer: " + TIMER;
+  } else if (counterTime == 0) {
+    showScore();
+    counterTime = 666;
+  } else {
+
   }
+
+}
 
 
 
 function presentQuestion() {
   let q = questions[runningQuestion];
-  question.innerHTML = "<p>" + q.question+ "</p>";
+  question.innerHTML = "<p>" + q.question + "</p>";
   btn0.innerHTML = q.choiceA;
   btn1.innerHTML = q.choiceB;
   btn2.innerHTML = q.choiceC;
@@ -98,24 +108,29 @@ function presentQuestion() {
 }
 
 function quizBegin() {
-startQuiz.style.display = "none";
-presentQuestion();
-gridElement.style.display = "grid";
-progressProvide();
-TIMER = setInterval(startTimer,1000);
+  startQuiz.style.display = "none";
+  presentQuestion();
+  gridElement.style.display = "grid";
+  progressProvide();
+  TIMER = setInterval(startTimer, 1000);
 }
 
 function progressProvide() {
-  for(let qIndex= 0; qIndex <= lastQuestion; qIndex++) {
-   progress.innerHTML += "<div class='prog' id=" + qIndex +"></div>";
+  for (let qIndex = 0; qIndex <= lastQuestion; qIndex++) {
+    progress.innerHTML += "<div class='prog' id=" + qIndex + "></div>";
   }
 }
 
 function checkAnswer(btn) {
-  if (btn == questions[runningQuestion].correctAnswer){
+  if (btn == questions[runningQuestion].correctAnswer) {
     score++;
     answerCorrect();
-  }else{
+  } else {
+    counterTime--;
+    counterTime--;
+    counterTime--;
+    counterTime--;
+    counterTime--;
     counterTime--;
     counterTime--;
     counterTime--;
@@ -126,30 +141,34 @@ function checkAnswer(btn) {
     answerWrong();
   }
   count = 0;
-  if(runningQuestion < lastQuestion) {
+  if (runningQuestion < lastQuestion) {
     runningQuestion++;
     presentQuestion();
   } else {
-    clearInterval(TIMER);
     showScore();
+    return;
   }
+  return;
 }
 
+
+
+
 function answerWrong() {
-   document.getElementById("wrong").style.display ="block";
-   document.getElementById("correct").style.display ="none";
-} 
+  document.getElementById("wrong").style.display = "block";
+  document.getElementById("correct").style.display = "none";
+}
 
 
 function answerCorrect() {
-  document.getElementById("correct").style.display ="block";
-  document.getElementById("wrong").style.display ="none";
+  document.getElementById("correct").style.display = "block";
+  document.getElementById("wrong").style.display = "none";
 }
 
 function showScore() {
   //gridElement.style.display = "none";
-  document.getElementById("correct").style.display ="none";
-  document.getElementById("wrong").style.display ="none";
+  document.getElementById("correct").style.display = "none";
+  document.getElementById("wrong").style.display = "none";
   document.getElementById("quizTitle").style.display = "none";
   document.getElementById("question").style.display = "none";
   document.getElementById("btn0").style.display = "none";
@@ -157,791 +176,808 @@ function showScore() {
   document.getElementById("btn2").style.display = "none";
   document.getElementById("btn3").style.display = "none";
   document.getElementById("score-container").style.display = "grid";
-  var scoreFinal = Math.round(100 * score/questions.length);
+  document.getElementById("home").style.display = "flex";
+  scoreFinal = Math.round(100 * score / questions.length);
   scores.innerHTML += "<p>" + scoreFinal + "</p>";
+  //console.log(scoreFinal);
+  counterTime = 666;
+  return false;
 }
 
 function populateStorage() {
-  localStorage.setItem("initials", "DAS");
-  localStorage.setItem("score", "666");
-}
-populateStorage();
+  var array = ["initials", storeInitials, "score", scoreFinal];
+  localStorage.setItem("array", JSON.stringify(array));
+  array = JSON.parse(localStorage.getItem("array"));
 
-    
-      saveScoreBtn.addEventListener("click", showScore, populateStorage);
-      startQuiz.addEventListener("click", quizBegin);
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-     
+}
+
+
+
+// function populateStorage() {
+//   storeInitials = document.getElementById("initials").value;
+//   localStorage.setItem("initials", storeInitials);
+//   localStorage.setItem("score", scoreFinal);
+// }
+
+function reloadQuiz() {
+  location.reload();
+}
+
+
+saveScoreBtn.addEventListener("click", populateStorage);
+startQuiz.addEventListener("click", quizBegin);
+document.getElementById("restartQuiz").addEventListener("click", reloadQuiz);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
