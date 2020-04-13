@@ -185,19 +185,19 @@ function populateStorage() {
 
 }
 
-// function populateStorage() {
-//   storeInitials = document.getElementById("initials").value;
-//   localStorage.setItem("initials", storeInitials);
-//   localStorage.setItem("score", scoreFinal);
-// }
-
 //Reload Quiz 
 function reloadQuiz() {
   location.reload();
 }
 
+function addScore() {
+  alert("okay");
+  entryId = localStorage.length + 1;
+  localStorage.setItem(entryId, "Initials: " + document.getElementById("initials").value + " Score: " + scoreFinal)
+}
+
 //Event Listeners
-saveScoreBtn.addEventListener("click", populateStorage);
+//saveScoreBtn.addEventListener("click", populateStorage);
 startQuiz.addEventListener("click", quizBegin);
 //document.getElementById("restartQuiz").addEventListener("click", reloadQuiz {location.reload());
 
